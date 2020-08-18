@@ -8,6 +8,8 @@
 class Solution {
 public:
     string longestPalindrome(string s) {
+        // 动态规划
+        /*
         int len = s.length();
         if(len < 2) return s;
         vector<vector<int>> dp(len, vector<int>(len, 0));
@@ -24,6 +26,33 @@ public:
             }
         }
         return s.substr(start, end - start + 1);
+        */
+       // 中心扩散法
+       int len = s.length();
+       string ans;
+       int maxl = 0;
+       if(len < 2) return s;
+       for(int i = 0; i < len - 1; i++){
+           string s1 = longest(s, i, i);
+           string s2 = longest(s, i, i + 1);
+           string temp = s1.length() > s2.length() ? s1 : s2;
+           if(temp.length() > maxl){
+               ans = temp;
+               maxl = temp.length();
+           }
+       }
+       return ans;
+    }
+    // 确定以 l, r为中心的最长的回文串
+    string longest(string s, int l, int r){
+        while(l >= 0 && r < s.length()){
+            if(s[l] == s[r]){
+                l--;
+                r++;
+            }
+            else break;
+        }
+        return s.substr(l + 1, r - l - 1); // 注意这里的取值
     }
 };
 // @lc code=end
