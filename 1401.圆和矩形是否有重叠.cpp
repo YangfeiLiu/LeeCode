@@ -1,0 +1,19 @@
+/*
+ * @lc app=leetcode.cn id=1401 lang=cpp
+ *
+ * [1401] 圆和矩形是否有重叠
+ */
+
+// @lc code=start
+class Solution {
+public:
+    bool checkOverlap(int radius, int x_center, int y_center, int x1, int y1, int x2, int y2) {
+        double x = (float)(x1 + x2) / 2, y = (float)(y1 + y2) / 2;
+        double lenx = x2 - x1, leny = y2 - y1;
+        double disx = abs(x - x_center), disy = abs(y - y_center);
+        double dis = pow(max(disx - lenx / 2, 0.), 2) + pow(max(disy - leny / 2, 0.), 2);
+        return dis <= pow(radius, 2);
+    }
+};
+// @lc code=end
+
