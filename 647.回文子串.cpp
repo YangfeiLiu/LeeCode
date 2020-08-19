@@ -40,15 +40,15 @@ public:
         vector<vector<bool>> dp(len, vector<bool>(len, false));
         for(int j = 0; j < len; j++){
             for(int i = 0; i <= j; i++){
-                if(i == j){
+                if(i == j){ // 只有一个字符
                     dp[i][j] = true;
                     cnt++;
                 }
-                if(j - i == 1 && s[i] == s[j]){
+                if(j - i == 1 && s[i] == s[j]){ // 两个字符，且相等
                     dp[i][j] = true;
                     cnt++;
                 }
-                if(j - i > 1 && s[i] == s[j] && dp[i+1][j-1]){
+                if(j - i > 1 && s[i] == s[j] && dp[i+1][j-1]){ // 多于两个字符
                     dp[i][j] = true;
                     cnt++;
                 }
