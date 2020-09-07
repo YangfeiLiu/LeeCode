@@ -8,13 +8,11 @@
 class Solution {
 public:
     vector<vector<int>> ans;
-
     vector<vector<int>> permute(vector<int>& nums) {
         if(nums.size() == 0) return ans;
         dfs(nums, 0);
         return ans;
     }
-
     void dfs(vector<int>& nums, int index){
         if(index == nums.size()){
             ans.push_back(nums);
